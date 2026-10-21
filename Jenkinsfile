@@ -15,5 +15,10 @@ pipeline {
                 bat "dotnet restore CoreMVCAppForJenkins.slnx"
             }
         }
+        stage("Build") {
+            steps {
+                bat "dotnet build CoreMVCAppForJenkins.slnx --configuration Release"
+            }
+        }
     }
 }
