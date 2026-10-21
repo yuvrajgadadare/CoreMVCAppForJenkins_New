@@ -31,5 +31,17 @@ pipeline {
 
             }
         }
+         stage("Deployment") {
+            steps {
+                // bat 'del /q /s "C:\\inetpub\\wwwroot\\WebApp\\"'
+                // bat '"xcopy /E /Y /I "publish\\*" "C:\\inetpub\\wwwroot\\WebApp\\"'
+                bat '''
+                        if exist "C:\\inetpub\\wwwroot\\mvcapp" rmdir /q /s "C:\\inetpub\\wwwroot\\mvcapp"
+                        mkdir "C:\\inetpub\\wwwroot\\mvcapp"
+                    '''
+                bat "C:\\Windows\\System32\\xcopy.exe /E /Y /I publish\\* C:\\inetpub\\wwwroot\\mvcapp\\"
+            }
+        }
+
     }
 }
